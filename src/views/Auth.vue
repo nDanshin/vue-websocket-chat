@@ -42,7 +42,9 @@ export default {
                 email: this.email,
                 password: this.password
             }
-            this.$store.dispatch('SignupUser', data)
+            this.$store.dispatch('SignupUser', data).then(() => {
+                this.$store.dispatch('ConnectWS')
+            })
         }
     }
 }
