@@ -12,6 +12,7 @@
 export default {
   created () {
     this.$store.commit('InitData')
+    this.$store.dispatch('InitData') // todo: remove this when later (it just for join hardcoded rooms)
   }
 }
 </script>

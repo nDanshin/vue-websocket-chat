@@ -1,4 +1,4 @@
-# hello-world
+# vue-websocket-chat
 
 ## Project setup
 ```
