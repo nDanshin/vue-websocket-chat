@@ -84,7 +84,7 @@ export default new Vuex.Store({
     },
     SignupUser (context, user) {
       return new Promise((resolve, reject) => {
-        axios({url: 'http://localhost:8081/users', data: user, method: 'POST'})
+        axios({url: 'http://51.15.41.4:8080/users', data: user, method: 'POST'})
         .then(resp => {
           context.commit('SignupUser', { id: resp.data.id, name: resp.data.userName })
           resolve(resp)
@@ -101,14 +101,14 @@ export default new Vuex.Store({
           room: context.state.currentRoomId,
           content: content
         }
-        axios({url: 'http://localhost:8081/messages', data: message, method: 'POST'})
+        axios({url: 'http://51.15.41.4:8080/messages', data: message, method: 'POST'})
         .then(resp => resolve(resp))
         .catch(err => reject(err))
       })
     },
     JoinRoom (context, roomId) {
       return new Promise((resolve, reject) => {
-        let url = 'http://localhost:8081/rooms/users/' + roomId + '/' + context.state.user.id 
+        let url = 'http://51.15.41.4:8080/rooms/users/' + roomId + '/' + context.state.user.id 
         axios({url: url, data: {}, method: 'PUT'})
         .then(resp => resolve(resp))
         .catch(err => reject(err))
@@ -119,7 +119,7 @@ export default new Vuex.Store({
         context.state.socket.close()
         context.state.socket = null
       }
-      var socket = new WebSocket("ws://localhost:8081/ws/" + context.state.user.id)
+      var socket = new WebSocket("ws://51.15.41.4:8080/ws/" + context.state.user.id)
       socket.onopen = function () { 
         alert('Connection establish')
       }
